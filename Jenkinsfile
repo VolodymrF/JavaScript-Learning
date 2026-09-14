@@ -20,11 +20,11 @@ pipeline {
                 bat 'npx playwright test'
             }
         }
+    }
 
-        stage('Allure Report') {
-            steps {
-                allure includeProperties: false, results: [[path: 'allure-results']]
-            }
+    post {
+        always {
+            allure includeProperties: false, results: [[path: 'allure-results']]
         }
     }
 }
